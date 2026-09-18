@@ -1,0 +1,14 @@
+{
+  "name": "node-mysql-redis-api",
+  "version": "1.0.0",
+  "description": "Multi-container Node + MySQL + Redis demonstration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "mysql2": "^3.12.0",
+    "redis": "^4.7.0"
+  }
+}

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kubernetes Interactive Mastery Hub | Cluster Simulator & Self-Healing Lab</title>
+  <meta name="description" content="Master Kubernetes through interactive cluster simulators, storytelling case studies, pod self-healing experiments, and meme quizzes.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☸️</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <span class="brand-icon">☸️</span>
+      <div>
+        <div class="brand-title">Kubernetes Cluster Lab</div>
+      </div>
+      <span class="brand-badge">Orchestration Pro</span>
+    </div>
+
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="stories" id="tab-btn-stories">📖 Story Mode</button>
+      <button class="nav-tab" data-tab="cluster" id="tab-btn-cluster">🧪 Cluster & Self-Healing Lab</button>
+      <button class="nav-tab" data-tab="quiz" id="tab-btn-quiz">🎮 Disaster Quiz Arena</button>
+      <button class="nav-tab" data-tab="builder" id="tab-btn-builder">⚡ Kubectl Builder</button>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <h1>Master Kubernetes: From Docker to 1,000 Self-Healing Pods</h1>
+        <p>
+          Docker packages your code into a container. Kubernetes orchestrates fleets of them across 50 servers. Experience the Google Borg origin story, test live pod self-healing, simulate zero-downtime rolling updates, and solve 3 AM production incidents.
+        </p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-box">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Episodes</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">3</div>
+          <div class="stat-label">Worker Nodes</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">0s</div>
+          <div class="stat-label">Downtime</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 1: STORY MODE -->
+    <section id="view-stories" class="tab-view active">
+      <div class="story-layout">
+        <aside class="story-sidebar">
+          <div class="story-nav-title">The Helmsman Chronicles</div>
+          <div class="story-list" id="story-nav-list">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </aside>
+
+        <article class="story-card" id="story-display-card">
+          <div class="story-header">
+            <h2 class="story-title" id="story-title">Loading Episode...</h2>
+            <div class="story-tagline" id="story-tagline" style="color: var(--k8s-blue-light); font-size: 1.1rem; margin-top: 4px;"></div>
+          </div>
+
+          <div class="story-meme-box" id="story-meme-box">
+            <img src="" alt="K8s Meme" class="story-meme-img" id="story-meme-img">
+            <div class="story-meme-caption" id="story-meme-caption"></div>
+          </div>
+
+          <div class="story-body" id="story-body"></div>
+
+          <div class="story-takeaways" id="story-takeaways">
+            <h4 style="color: var(--success); margin-bottom: 0.8rem;">💡 Key Architectural Takeaways:</h4>
+            <ul id="story-takeaways-list" style="padding-left: 1.5rem; color: #e2e8f0;"></ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TAB 2: CLUSTER & SELF-HEALING SIMULATOR -->
+    <section id="view-cluster" class="tab-view">
+      <div class="cluster-card">
+        <h3>🧪 Live Kubernetes Cluster Simulator (Self-Healing & Rolling Updates)</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
+          Kubernetes maintains your <strong>Desired State</strong> at all costs. Kill a pod or crash an entire worker node to watch the <strong>Controller Manager</strong> detect drift and <strong>Kubelet</strong> resurrect replacements in real time!
+        </p>
+
+        <!-- Simulator Actions -->
+        <div class="sim-toolbar">
+          <button class="btn-action btn-kill-pod" id="btn-kill-pod">💥 Kill Random Pod</button>
+          <button class="btn-action btn-crash-node" id="btn-crash-node">⚡ Crash Worker Node 2 (Power Outage)</button>
+          <button class="btn-action btn-rolling-update" id="btn-rolling-update">🔄 Trigger Rolling Update (v1 ➔ v2)</button>
+          <button class="btn-action btn-reset" id="btn-reset-cluster">🛡️ Reset / Heal Cluster</button>
+        </div>
+
+        <!-- 1. The Control Plane (Brain) -->
+        <div class="control-plane-box">
+          <div class="cp-header">
+            <div>
+              <strong style="color: #fff; font-size: 1.1rem;">🧠 Control Plane (Master Node)</strong>
+              <span style="font-size: 0.78rem; color: var(--k8s-blue-light); margin-left: 8px;">api.k8s.internal</span>
+            </div>
+            <span class="node-state-badge ready">Reconciliation Loop Active</span>
+          </div>
+
+          <div class="cp-components">
+            <div class="cp-comp">
+              <div class="cp-comp-title">kube-apiserver</div>
+              <div class="cp-comp-role">REST Gatekeeper (HTTPS)</div>
+            </div>
+            <div class="cp-comp">
+              <div class="cp-comp-title">etcd</div>
+              <div class="cp-comp-role">Single Source of Truth DB</div>
+            </div>
+            <div class="cp-comp">
+              <div class="cp-comp-title">kube-scheduler</div>
+              <div class="cp-comp-role">Pod Placement Matchmaker</div>
+            </div>
+            <div class="cp-comp">
+              <div class="cp-comp-title">controller-manager</div>
+              <div class="cp-comp-role">Self-Healing Watchdog</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. The Worker Nodes (Muscle) -->
+        <div class="worker-nodes-grid" id="worker-nodes-container">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Terminal Output -->
+        <div class="terminal-window">
+          <div class="terminal-topbar">
+            <span class="term-dot red"></span>
+            <span class="term-dot yellow"></span>
+            <span class="term-dot green"></span>
+            <span class="term-title">kubectl-watch-console</span>
+          </div>
+          <div class="terminal-body" id="cluster-console-output">
+            <span style="color: var(--k8s-blue-light);">$ kubectl get pods -o wide</span><br>
+            [Ready] Cluster running 6 replicas of 'payment-api' across 3 healthy worker nodes.<br>
+            Click any button above to simulate chaos and watch Kubernetes reconcile the cluster!
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: QUIZ ARENA -->
+    <section id="view-quiz" class="tab-view">
+      <div class="quiz-box">
+        <div class="quiz-header">
+          <div class="quiz-progress" id="quiz-progress-text">Challenge 1 of 5</div>
+          <div class="quiz-score-badge" id="quiz-score-display">K8s Score: 0 pts</div>
+        </div>
+
+        <h3 class="quiz-question-title" id="quiz-title">Loading Challenge...</h3>
+        <div class="quiz-scenario" id="quiz-scenario"></div>
+
+        <div class="quiz-options" id="quiz-options-container">
+          <!-- Options rendered dynamically -->
+        </div>
+
+        <div class="quiz-feedback-box" id="quiz-feedback-box">
+          <img src="" alt="Meme reaction" class="quiz-meme-img" id="quiz-meme-img">
+          <h4 id="quiz-feedback-title" style="margin-bottom: 0.5rem;"></h4>
+          <p id="quiz-feedback-desc" style="font-size: 0.95rem; color: #cbd5e1;"></p>
+          <button class="btn-action btn-rolling-update" id="btn-next-quiz" style="margin-top: 1rem;">Next Incident ➔</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: KUBECTL BUILDER -->
+    <section id="view-builder" class="tab-view">
+      <div class="builder-layout">
+        <div class="cluster-card">
+          <h3>⚡ Visual Kubectl Command Generator</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.2rem;">
+            Assemble production-safe kubectl commands with proper flags in real-time:
+          </p>
+
+          <div style="margin-bottom: 1rem;">
+            <label style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Target Deployment / Pod Name:</label>
+            <input type="text" id="input-k8s-name" value="payment-api" style="background: #060910; border: 1px solid var(--border-color); color: #fff; padding: 8px 12px; border-radius: 6px; font-family: var(--font-mono); width: 100%;">
+          </div>
+
+          <div class="flag-group" id="k8s-flags-list">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <div class="cluster-card">
+          <h3>💻 Generated Kubectl Command</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.2rem;">
+            Run this directly in PowerShell or Bash:
+          </p>
+
+          <div class="terminal-window">
+            <div class="terminal-topbar">
+              <span class="term-dot red"></span>
+              <span class="term-dot yellow"></span>
+              <span class="term-dot green"></span>
+              <span class="term-title">powershell</span>
+            </div>
+            <div class="terminal-body">
+              <span style="color: var(--k8s-blue-light);">&gt;</span> <span id="builder-k8s-result" style="color: #93c5fd; font-family: var(--font-mono); word-break: break-all;">kubectl create deployment payment-api ...</span>
+            </div>
+          </div>
+
+          <button class="btn-action btn-rolling-update" id="btn-copy-k8s" style="margin-top: 1rem;">
+            📋 Copy to Clipboard
+          </button>
+          <span id="k8s-copy-confirm" style="color: var(--success); font-size: 0.85rem; margin-left: 10px; opacity: 0; transition: opacity 0.3s;">Copied!</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="k8s-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+services:
+  # ----------------------------------------------------------------------------
+  # 1. Frontend Web Client (Nginx reverse proxying to backend)
+  # ----------------------------------------------------------------------------
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: ecommerce_frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      backend:
+        condition: service_started
+    networks:
+      - ecommerce_net
+    restart: unless-stopped
+
+  # ----------------------------------------------------------------------------
+  # 2. Backend API (Node.js Express)
+  # ----------------------------------------------------------------------------
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ecommerce_backend
+    environment:
+      PORT: 3000
+      DB_HOST: db
+      DB_USER: ecommerce_user
+      DB_PASSWORD: ecommerce_secret
+      DB_NAME: ecommerce_db
+      REDIS_HOST: redis
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - ecommerce_net
+    restart: unless-stopped
+
+  # ----------------------------------------------------------------------------
+  # 3. Database (MySQL 8.0)
+  # ----------------------------------------------------------------------------
+  db:
+    image: mysql:8.0
+    container_name: ecommerce_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_super_secret
+      MYSQL_DATABASE: ecommerce_db
+      MYSQL_USER: ecommerce_user
+      MYSQL_PASSWORD: ecommerce_secret
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot_super_secret"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+    networks:
+      - ecommerce_net
+    restart: unless-stopped
+
+  # ----------------------------------------------------------------------------
+  # 4. Cache (Redis)
+  # ----------------------------------------------------------------------------
+  redis:
+    image: redis:alpine
+    container_name: ecommerce_redis
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - ecommerce_net
+    restart: unless-stopped
+
+# ------------------------------------------------------------------------------
+# Volumes for persistent data across container rebuilds
+# ------------------------------------------------------------------------------
+volumes:
+  mysql_data:
+  redis_data:
+
+# ------------------------------------------------------------------------------
+# Isolated Bridge Network
+# ------------------------------------------------------------------------------
+networks:
+  ecommerce_net:
+    driver: bridge

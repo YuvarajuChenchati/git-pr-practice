@@ -1,0 +1,34 @@
+groups:
+  - name: production-critical-alerts
+    rules:
+      # Alert 1: High HTTP 5xx Error Rate Spike
+      - alert: HighHttpErrorRate
+        expr: sum(rate(http_requests_total{status=~"5.."}[2m])) / sum(rate(http_requests_total[2m])) * 100 > 2.0
+        for: 1m
+        labels:
+          severity: critical
+          tier: api
+        annotations:
+          summary: "High HTTP 5xx Error Rate (> 2%) on {{ $labels.service }}"
+          description: "Service {{ $labels.service }} is experiencing {{ $value }}% 5xx errors for the past 1 minute. User sessions are failing!"
+
+      # Alert 2: High P99 Latency (User Experience Degradation)
+      - alert: HighLatencyP99
+        expr: histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket[5m])) by (le, service)) > 1.0
+        for: 3m
+        labels:
+          severity: warning
+          tier: frontend
+        annotations:
+          summary: "P99 Latency exceeded 1.0s on {{ $labels.service }}"
+          description: "99th percentile of users are experiencing response times of {{ $value }}s on {{ $labels.service }}."
+
+      # Alert 3: Container Imminent Out Of Memory (OOM)
+      - alert: ContainerMemorySaturation
+        expr: container_memory_working_set_bytes / container_spec_memory_limit_bytes * 100 > 90.0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Pod {{ $labels.pod }} Memory at {{ $value }}%"
+          description: "Pod is approaching its memory limit and risks being OOMKilled (Exit Code 137) by Linux cgroups."

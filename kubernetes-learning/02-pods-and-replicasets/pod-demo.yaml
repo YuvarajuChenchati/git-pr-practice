@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: diag-pod
+  labels:
+    app: diagnostic-api
+    tier: frontend
+    env: development
+spec:
+  containers:
+    - name: api-container
+      image: nginx:alpine # Fast, tiny, universal image for instant demonstration
+      ports:
+        - containerPort: 80
+          name: http
+      resources:
+        requests:
+          memory: "64Mi"
+          cpu: "50m"
+        limits:
+          memory: "128Mi"
+          cpu: "200m"

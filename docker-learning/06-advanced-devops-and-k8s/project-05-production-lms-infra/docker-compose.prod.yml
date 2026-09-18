@@ -1,0 +1,36 @@
+# ==============================================================================
+# Production LMS (Learning Management System) Infrastructure
+# Production hardened with:
+# 1. CPU and RAM hard limits
+# 2. Automated log rotation (prevents disk space exhaustion)
+# 3. Aggressive healthchecks
+# 4. Restart policies
+# ==============================================================================
+services:
+  lms-api:
+    image: node:22-alpine
+    container_name: lms_production_api
+    command: ["sh", "-c", "node -e 'const http=require(\"http\");http.createServer((q,s)=>s.end(JSON.stringify({status:\"LMS API Operational\",node:process.version}))).listen(3000,\"0.0.0.0\",()=>console.log(\"LMS Online on 3000\"))'"]
+    ports:
+      - "3000:3000"
+    restart: always
+    # Resource constraints
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'     # Cap at 50% of 1 CPU core
+          memory: 256M     # Cap at 256 Megabytes RAM
+        reservations:
+          cpus: '0.10'
+          memory: 64M
+    # Log rotation: Docker logs won't fill up host disk
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/"]
+      interval: 10s
+      timeout: 3s
+      retries: 3

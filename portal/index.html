@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud & DevOps Mastery Portal | Mission Control</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+  <!-- Top Global Header -->
+  <header class="cockpit-header">
+    <div class="logo-area">
+      <span class="logo-icon">🚀</span>
+      <div>
+        <h1>Cloud & DevOps Mission Control</h1>
+        <p class="subtitle">Complete 5-Pillar Modern Architecture & Interactive Learning Cockpit</p>
+      </div>
+    </div>
+    <div class="ecosystem-status-bar">
+      <div class="status-pill active"><span class="pill-dot"></span> 🐳 Docker</div>
+      <div class="status-pill active"><span class="pill-dot"></span> ☸️ Kubernetes</div>
+      <div class="status-pill active"><span class="pill-dot"></span> 🏗️ Terraform</div>
+      <div class="status-pill active"><span class="pill-dot"></span> 🤖 CI/CD</div>
+      <div class="status-pill active"><span class="pill-dot"></span> 📊 SRE</div>
+    </div>
+  </header>
+
+  <!-- Quick-Launch Hub Bar -->
+  <section class="quick-launch-strip">
+    <div class="strip-label">⚡ Direct Simulator Launchers:</div>
+    <div class="hub-buttons">
+      <a href="../docker-learning/interactive-hub/index.html" target="_blank" class="hub-btn docker">
+        <span class="hub-icon">🐳</span> Docker Hub
+      </a>
+      <a href="../kubernetes-learning/interactive-hub/index.html" target="_blank" class="hub-btn k8s">
+        <span class="hub-icon">☸️</span> Kubernetes Lab
+      </a>
+      <a href="../terraform-learning/interactive-hub/index.html" target="_blank" class="hub-btn tf">
+        <span class="hub-icon">🏗️</span> Terraform Lab
+      </a>
+      <a href="../cicd-gitops-learning/interactive-hub/index.html" target="_blank" class="hub-btn cicd">
+        <span class="hub-icon">🤖</span> CI/CD & GitOps
+      </a>
+      <a href="../observability-sre-learning/interactive-hub/index.html" target="_blank" class="hub-btn sre">
+        <span class="hub-icon">📊</span> SRE & Observability
+      </a>
+    </div>
+  </section>
+
+  <!-- Main Navigation Tabs -->
+  <nav class="main-tabs">
+    <button class="tab-btn active" data-tab="tab-control"><span class="tab-icon">🎛️</span> Mission Control & Lifecycle</button>
+    <button class="tab-btn" data-tab="tab-simulator"><span class="tab-icon">⚡</span> End-to-End Black Friday Simulator</button>
+    <button class="tab-btn" data-tab="tab-skilltree"><span class="tab-icon">🏆</span> DevOps Career Matrix & Level</button>
+    <button class="tab-btn" data-tab="tab-cheatsheet"><span class="tab-icon">🔍</span> Universal Command Finder</button>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main class="content-container">
+
+    <!-- TAB 1: Mission Control & Lifecycle -->
+    <section id="tab-control" class="tab-panel active">
+      <div class="hero-card">
+        <h2>The Production DevOps Loop</h2>
+        <p>Every modern high-scale technology company builds, ships, and operates software across these five unified stages:</p>
+      </div>
+
+      <div class="lifecycle-grid">
+        <div class="pillar-card" data-pillar="docker">
+          <div class="pillar-header">
+            <span class="pillar-icon">🐳</span>
+            <h3>1. Docker</h3>
+            <span class="stage-tag">Package</span>
+          </div>
+          <p>Package the app and dependencies into immutable, reproducible container images with multi-stage builds and zero bloat.</p>
+          <div class="pillar-metrics">
+            <span>Size: <strong>1.8GB ➔ 54MB</strong></span>
+            <span>Security: <strong>Non-Root + Tini</strong></span>
+          </div>
+          <a href="../docker-learning/interactive-hub/index.html" class="card-action-link">Open Docker Hub &rarr;</a>
+        </div>
+
+        <div class="pillar-card" data-pillar="terraform">
+          <div class="pillar-header">
+            <span class="pillar-icon">🏗️</span>
+            <h3>2. Terraform</h3>
+            <span class="stage-tag">Provision</span>
+          </div>
+          <p>Declaratively code the underlying cloud infrastructure (AWS VPCs, Subnets, Security Groups, EKS Clusters) with remote state locks.</p>
+          <div class="pillar-metrics">
+            <span>State: <strong>S3 + DynamoDB</strong></span>
+            <span>Target: <strong>AWS EKS Blueprint</strong></span>
+          </div>
+          <a href="../terraform-learning/interactive-hub/index.html" class="card-action-link">Open Terraform Hub &rarr;</a>
+        </div>
+
+        <div class="pillar-card" data-pillar="kubernetes">
+          <div class="pillar-header">
+            <span class="pillar-icon">☸️</span>
+            <h3>3. Kubernetes</h3>
+            <span class="stage-tag">Orchestrate</span>
+          </div>
+          <p>Orchestrate container workloads across multi-node clusters with auto-healing, rolling updates, ingress routing, and storage volumes.</p>
+          <div class="pillar-metrics">
+            <span>Replicas: <strong>Auto-Healing</strong></span>
+            <span>Downtime: <strong>0.00s (Rolling)</strong></span>
+          </div>
+          <a href="../kubernetes-learning/interactive-hub/index.html" class="card-action-link">Open Kubernetes Hub &rarr;</a>
+        </div>
+
+        <div class="pillar-card" data-pillar="cicd">
+          <div class="pillar-header">
+            <span class="pillar-icon">🤖</span>
+            <h3>4. CI/CD & GitOps</h3>
+            <span class="stage-tag">Automate</span>
+          </div>
+          <p>Automate cleanroom test execution, Trivy vulnerability gating, Buildx image pushes, and pull-based ArgoCD continuous reconciliation.</p>
+          <div class="pillar-metrics">
+            <span>Pipeline: <strong>GitHub Actions</strong></span>
+            <span>Deployer: <strong>ArgoCD Pull-Sync</strong></span>
+          </div>
+          <a href="../cicd-gitops-learning/interactive-hub/index.html" class="card-action-link">Open CI/CD Hub &rarr;</a>
+        </div>
+
+        <div class="pillar-card" data-pillar="sre">
+          <div class="pillar-header">
+            <span class="pillar-icon">📊</span>
+            <h3>5. Observability & SRE</h3>
+            <span class="stage-tag">Operate</span>
+          </div>
+          <p>Monitor real-time health using Prometheus Four Golden Signals, Grafana dashboards, OpenTelemetry distributed traces, and Alertmanager.</p>
+          <div class="pillar-metrics">
+            <span>Signals: <strong>Latency, Traffic, Errors</strong></span>
+            <span>SLO Target: <strong>99.95% Availability</strong></span>
+          </div>
+          <a href="../observability-sre-learning/interactive-hub/index.html" class="card-action-link">Open SRE Hub &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Local Capstone Run Strip -->
+      <div class="capstone-callout">
+        <div class="capstone-info">
+          <span class="capstone-badge">FULL RUNNABLE STACK</span>
+          <h3>Want to run the complete stack on your local machine?</h3>
+          <p>We built a fully instrumented Node.js app with Prometheus scraping and Grafana dashboards in <code>99-capstone-production-stack/</code>.</p>
+        </div>
+        <div class="capstone-actions">
+          <code>docker compose up --build -d</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: End-to-End Black Friday Simulator -->
+    <section id="tab-simulator" class="tab-panel">
+      <div class="sim-header-box">
+        <h2>🎪 Live End-to-End Scenario: "The Black Friday Super-Sale"</h2>
+        <p>Step through each real-world DevOps milestone and watch the system react in real-time:</p>
+      </div>
+
+      <div class="stepper-controls">
+        <button id="step-btn-1" class="step-nav active" onclick="jumpToStep(1)">1. Docker Build</button>
+        <button id="step-btn-2" class="step-nav" onclick="jumpToStep(2)">2. Terraform Infra</button>
+        <button id="step-btn-3" class="step-nav" onclick="jumpToStep(3)">3. K8s Deploy</button>
+        <button id="step-btn-4" class="step-nav" onclick="jumpToStep(4)">4. GitOps Sync</button>
+        <button id="step-btn-5" class="step-nav" onclick="jumpToStep(5)">5. Surge & SRE Heal</button>
+      </div>
+
+      <div class="scenario-stage-card">
+        <div class="stage-badge-row">
+          <span id="scenario-stage-tag" class="stage-pill">PHASE 1 OF 5</span>
+          <h3 id="scenario-title">Packaging the Microservice (Docker)</h3>
+        </div>
+        <div class="scenario-content-split">
+          <div class="scenario-narrative">
+            <p id="scenario-desc">The software engineering team pushes the new checkout microservice. Our multi-stage Dockerfile uses node:20-alpine to strip devDependencies and runs with non-root security.</p>
+            <div class="sim-action-box">
+              <button id="scenario-run-btn" class="run-step-action-btn" onclick="executeCurrentStep()">▶ Run Phase 1 Action</button>
+              <span id="scenario-action-status" class="status-msg">Waiting for trigger...</span>
+            </div>
+            <div class="terminal-box">
+              <div class="term-header">
+                <span class="term-dot red"></span>
+                <span class="term-dot yellow"></span>
+                <span class="term-dot green"></span>
+                <span id="term-title">devops-terminal@production-bastion:~</span>
+              </div>
+              <pre id="scenario-log">// Terminal ready. Click 'Run Phase Action' to execute this stage.</pre>
+            </div>
+          </div>
+          <div class="scenario-visual-stage">
+            <div class="visual-header">Live Architecture State:</div>
+            <div id="scenario-diagram" class="architecture-visual-board">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: DevOps Career Matrix & Level -->
+    <section id="tab-skilltree" class="tab-panel">
+      <div class="career-header">
+        <div class="rank-display">
+          <span class="rank-avatar" id="rank-badge">🌱</span>
+          <div>
+            <div class="rank-label">Your Current DevOps Standing:</div>
+            <h2 id="rank-title">Junior Container Apprentice</h2>
+            <div class="xp-bar-container">
+              <div class="xp-bar-fill" id="xp-bar" style="width: 20%;"></div>
+            </div>
+            <p id="xp-text">4 / 20 Skills Mastered (20%)</p>
+          </div>
+        </div>
+        <button class="reset-xp-btn" onclick="resetSkills()">Reset Progress</button>
+      </div>
+
+      <div class="skills-grid" id="skills-container">
+        <!-- Injected via app.js -->
+      </div>
+    </section>
+
+    <!-- TAB 4: Universal Command Finder -->
+    <section id="tab-cheatsheet" class="tab-panel">
+      <div class="search-header-box">
+        <h2>⚡ Emergency Command Quick-Search</h2>
+        <p>Instant production-grade commands and cheat codes across all 5 disciplines. Search any problem or keyword:</p>
+        <div class="search-bar-row">
+          <input type="text" id="command-search-input" placeholder="Type a keyword e.g. 'OOMKilled', 'state lock', 'p95', 'zombie', 'trivy', 'rollback'..." oninput="filterCommands()">
+          <div class="filter-tag-group">
+            <button class="filter-chip active" onclick="setCommandFilter('all', this)">All</button>
+            <button class="filter-chip" onclick="setCommandFilter('docker', this)">Docker</button>
+            <button class="filter-chip" onclick="setCommandFilter('kubernetes', this)">Kubernetes</button>
+            <button class="filter-chip" onclick="setCommandFilter('terraform', this)">Terraform</button>
+            <button class="filter-chip" onclick="setCommandFilter('cicd', this)">CI/CD</button>
+            <button class="filter-chip" onclick="setCommandFilter('sre', this)">SRE / PromQL</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="commands-list" id="commands-container">
+        <!-- Injected dynamically via app.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="cockpit-footer">
+    <p>🚀 <strong>Cloud & DevOps Mastery Hub</strong> — Built for real engineers mastering Docker, Kubernetes, Terraform, CI/CD, and Site Reliability Engineering.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

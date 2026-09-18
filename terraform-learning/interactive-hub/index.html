@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terraform Interactive Mastery Hub | Cloud Canvas & Lifecycle Simulator</title>
+  <meta name="description" content="Master Terraform Infrastructure as Code (IaC) through interactive cloud canvas simulators, storytelling case studies, and meme quizzes.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏗️</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <span class="brand-icon">🏗️</span>
+      <div>
+        <div class="brand-title">Terraform Cloud Lab</div>
+      </div>
+      <span class="brand-badge">IaC Automation Pro</span>
+    </div>
+
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="stories" id="tab-btn-stories">📖 Story Mode</button>
+      <button class="nav-tab" data-tab="canvas" id="tab-btn-canvas">🧪 Cloud Canvas Simulator</button>
+      <button class="nav-tab" data-tab="quiz" id="tab-btn-quiz">🎮 Disaster Quiz Arena</button>
+      <button class="nav-tab" data-tab="generator" id="tab-btn-generator">⚡ HCL Generator</button>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <h1>Master Terraform: From ClickOps to Multi-Cloud Code</h1>
+        <p>
+          Never click through AWS Web Console wizards again. Master declarative HCL, understand the sacred state file, simulate drift detection, and automate the cloud foundations that power Kubernetes and Docker.
+        </p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-box">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Episodes</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">6</div>
+          <div class="stat-label">AWS Resources</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">100%</div>
+          <div class="stat-label">Automated</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 1: STORY MODE -->
+    <section id="view-stories" class="tab-view active">
+      <div class="story-layout">
+        <aside class="story-sidebar">
+          <div class="story-nav-title">The Infrastructure Chronicles</div>
+          <div class="story-list" id="story-nav-list">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </aside>
+
+        <article class="story-card" id="story-display-card">
+          <div class="story-header">
+            <h2 class="story-title" id="story-title" style="font-size: 2rem; margin-bottom: 0.5rem;">Loading Episode...</h2>
+            <div class="story-tagline" id="story-tagline" style="color: var(--tf-purple-light); font-size: 1.1rem;"></div>
+          </div>
+
+          <div class="story-meme-box" id="story-meme-box">
+            <img src="" alt="Terraform Meme" class="story-meme-img" id="story-meme-img">
+            <div class="story-meme-caption" id="story-meme-caption"></div>
+          </div>
+
+          <div class="story-body" id="story-body"></div>
+
+          <div class="story-takeaways" id="story-takeaways">
+            <h4 style="color: var(--diff-add); margin-bottom: 0.8rem;">💡 Key Architectural Takeaways:</h4>
+            <ul id="story-takeaways-list" style="padding-left: 1.5rem; color: #e2e8f0;"></ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TAB 2: CLOUD CANVAS & LIFECYCLE SIMULATOR -->
+    <section id="view-canvas" class="tab-view">
+      <div class="canvas-card">
+        <h3>🧪 Live Terraform Cloud Canvas & Lifecycle Simulator</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
+          Run the classic Terraform loop. Generate a plan, watch the diff, apply the changes to provision the cloud canvas, or test drift detection when manual changes occur!
+        </p>
+
+        <!-- Simulator Toolbar -->
+        <div class="sim-toolbar">
+          <button class="btn-action btn-plan" id="btn-tf-plan">🔍 terraform plan</button>
+          <button class="btn-action btn-apply" id="btn-tf-apply">🚀 terraform apply</button>
+          <button class="btn-action btn-drift" id="btn-tf-drift">🕵️ Simulate Console Drift (Rogue Port 22 Open)</button>
+          <button class="btn-action btn-destroy" id="btn-tf-destroy">💥 terraform destroy</button>
+        </div>
+
+        <!-- Cloud Resources Grid -->
+        <div class="cloud-resources-grid" id="cloud-resources-container">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Terminal Output -->
+        <div class="terminal-window">
+          <div class="terminal-topbar">
+            <span class="term-dot red"></span>
+            <span class="term-dot yellow"></span>
+            <span class="term-dot green"></span>
+            <span class="term-title">terraform-execution-engine</span>
+          </div>
+          <div class="terminal-body" id="tf-console-output">
+            <span style="color: var(--tf-purple-light);">$ terraform init</span><br>
+            Initializing provider plugins: hashicorp/aws v5.20.0... [SUCCESS]<br>
+            Terraform has been successfully initialized! Click 'terraform plan' above.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: QUIZ ARENA -->
+    <section id="view-quiz" class="tab-view">
+      <div class="quiz-box">
+        <div class="quiz-header">
+          <div class="quiz-progress" id="quiz-progress-text">Incident 1 of 5</div>
+          <div class="quiz-score-badge" id="quiz-score-display">IaC Score: 0 pts</div>
+        </div>
+
+        <h3 class="quiz-question-title" id="quiz-title">Loading Incident...</h3>
+        <div class="quiz-scenario" id="quiz-scenario"></div>
+
+        <div class="quiz-options" id="quiz-options-container">
+          <!-- Options rendered dynamically -->
+        </div>
+
+        <div class="quiz-feedback-box" id="quiz-feedback-box">
+          <img src="" alt="Meme reaction" class="quiz-meme-img" id="quiz-meme-img">
+          <h4 id="quiz-feedback-title" style="margin-bottom: 0.5rem;"></h4>
+          <p id="quiz-feedback-desc" style="font-size: 0.95rem; color: #cbd5e1;"></p>
+          <button class="btn-action btn-plan" id="btn-next-quiz" style="margin-top: 1rem;">Next Incident ➔</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: HCL GENERATOR -->
+    <section id="view-generator" class="tab-view">
+      <div class="story-layout">
+        <div class="canvas-card">
+          <h3>⚡ Visual HCL Resource Generator</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.2rem;">
+            Configure your cloud resource parameters and watch valid HCL assemble:
+          </p>
+
+          <div style="margin-bottom: 1.2rem;">
+            <label style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 4px;">AWS Region:</label>
+            <select id="gen-region" style="background: #0d0a17; border: 1px solid var(--border-color); color: #fff; padding: 8px 12px; border-radius: 6px; font-family: var(--font-mono); width: 100%;">
+              <option value="us-east-1">us-east-1 (N. Virginia)</option>
+              <option value="us-west-2">us-west-2 (Oregon)</option>
+              <option value="eu-west-1">eu-west-1 (Ireland)</option>
+              <option value="ap-south-1">ap-south-1 (Mumbai)</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom: 1.2rem;">
+            <label style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 4px;">VPC CIDR Block:</label>
+            <input type="text" id="gen-cidr" value="10.0.0.0/16" style="background: #0d0a17; border: 1px solid var(--border-color); color: #fff; padding: 8px 12px; border-radius: 6px; font-family: var(--font-mono); width: 100%;">
+          </div>
+
+          <div style="margin-bottom: 1.2rem;">
+            <label style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Environment Tag:</label>
+            <input type="text" id="gen-env" value="production" style="background: #0d0a17; border: 1px solid var(--border-color); color: #fff; padding: 8px 12px; border-radius: 6px; font-family: var(--font-mono); width: 100%;">
+          </div>
+        </div>
+
+        <div class="canvas-card">
+          <h3>💻 Output HCL (main.tf)</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.2rem;">
+            Copy-paste into your <code>main.tf</code>:
+          </p>
+
+          <div class="terminal-window">
+            <div class="terminal-topbar">
+              <span class="term-dot red"></span>
+              <span class="term-dot yellow"></span>
+              <span class="term-dot green"></span>
+              <span class="term-title">main.tf</span>
+            </div>
+            <div class="terminal-body" style="font-size: 0.85rem; overflow-x: auto;">
+              <pre><code id="hcl-output-code"></code></pre>
+            </div>
+          </div>
+
+          <button class="btn-action btn-plan" id="btn-copy-hcl" style="margin-top: 1rem;">
+            📋 Copy HCL to Clipboard
+          </button>
+          <span id="hcl-copy-confirm" style="color: var(--diff-add); font-size: 0.85rem; margin-left: 10px; opacity: 0; transition: opacity 0.3s;">Copied!</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="tf-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

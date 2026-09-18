@@ -1,0 +1,45 @@
+# ==============================================================================
+# Kubernetes Deployment: Translating Docker Compose to Kubernetes
+# Manages 3 parallel replica Pods of our LMS container with zero-downtime rolling updates
+# ==============================================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lms-api-deployment
+  labels:
+    app: lms-api
+spec:
+  replicas: 3 # Automatically runs 3 identical container instances!
+  selector:
+    matchLabels:
+      app: lms-api
+  template:
+    metadata:
+      labels:
+        app: lms-api
+    spec:
+      containers:
+      - name: lms-api
+        image: node:22-alpine # In real world: your ECR image URL
+        command: ["sh", "-c", "node -e 'const http=require(\"http\");http.createServer((q,s)=>s.end(JSON.stringify({status:\"healthy\",pod:process.env.HOSTNAME}))).listen(3000,\"0.0.0.0\",()=>console.log(\"K8s LMS Pod online\"))'"]
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            cpu: "500m"      # 0.5 CPU core
+            memory: "256Mi"
+          requests:
+            cpu: "100m"
+            memory: "64Mi"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 3
+          periodSeconds: 5

@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ecommerce-production-app
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+
+  # Source: Where ArgoCD pulls declarative Kubernetes manifests
+  source:
+    repoURL: 'https://github.com/my-org/k8s-manifests-repo.git'
+    targetRevision: HEAD
+    path: environments/production
+
+  # Destination: Which cluster and namespace to deploy into
+  destination:
+    server: 'https://kubernetes.default.svc' # Internal cluster API
+    namespace: production
+
+  # Sync Policy: Automated GitOps Reconciliation & Self-Healing
+  syncPolicy:
+    automated:
+      prune: true      # Automatically delete K8s resources removed from Git
+      selfHeal: true   # Automatically revert any manual 'kubectl' tampering!
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Observability & SRE Interactive Mastery Hub | Telemetry & Alerting Simulator</title>
+  <meta name="description" content="Master Observability, Prometheus, Grafana, OpenTelemetry, and SRE alerting through interactive simulators, storytelling case studies, and meme quizzes.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <span class="brand-icon">📊</span>
+      <div>
+        <div class="brand-title">Observability & SRE Lab</div>
+      </div>
+      <span class="brand-badge">Telemetry Pro</span>
+    </div>
+
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="stories" id="tab-btn-stories">📖 Story Mode</button>
+      <button class="nav-tab" data-tab="telemetry" id="tab-btn-telemetry">🧪 Telemetry & SRE Lab</button>
+      <button class="nav-tab" data-tab="quiz" id="tab-btn-quiz">🎮 Disaster Quiz Arena</button>
+      <button class="nav-tab" data-tab="promql" id="tab-btn-promql">⚡ PromQL Builder</button>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <h1>Master Observability: Prometheus, Grafana & OpenTelemetry</h1>
+        <p>
+          Never fly production blind again. Master the Three Pillars of Observability (Metrics, Logs, Traces), Google SRE Four Golden Signals, tail latency percentiles (P99), and distributed alerting before customers ever notice outages.
+        </p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-box">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Episodes</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">3</div>
+          <div class="stat-label">Pillars</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">99.9%</div>
+          <div class="stat-label">SLO Target</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 1: STORY MODE -->
+    <section id="view-stories" class="tab-view active">
+      <div class="story-layout">
+        <aside class="story-sidebar">
+          <div class="story-nav-title">The Telemetry Chronicles</div>
+          <div class="story-list" id="story-nav-list">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </aside>
+
+        <article class="story-card" id="story-display-card">
+          <div class="story-header">
+            <h2 class="story-title" id="story-title" style="font-size: 2rem; margin-bottom: 0.5rem;">Loading Episode...</h2>
+            <div class="story-tagline" id="story-tagline" style="color: var(--sre-amber); font-size: 1.1rem;"></div>
+          </div>
+
+          <div class="story-meme-box" id="story-meme-box">
+            <img src="" alt="SRE Meme" class="story-meme-img" id="story-meme-img">
+            <div class="story-meme-caption" id="story-meme-caption"></div>
+          </div>
+
+          <div class="story-body" id="story-body"></div>
+
+          <div class="story-takeaways" id="story-takeaways">
+            <h4 style="color: var(--success); margin-bottom: 0.8rem;">💡 Key Architectural Takeaways:</h4>
+            <ul id="story-takeaways-list" style="padding-left: 1.5rem; color: #e2e8f0;"></ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TAB 2: TELEMETRY & SRE LAB -->
+    <section id="view-telemetry" class="tab-view">
+      <div class="telemetry-card">
+        <h3>🧪 Live Telemetry, Metrics & Distributed Tracing Simulator</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
+          Simulate real production traffic dynamics. Watch the Four Golden Signals react in real-time, inspect OpenTelemetry distributed trace spans to isolate bottlenecks, and trigger Alertmanager alerts!
+        </p>
+
+        <!-- Simulator Toolbar -->
+        <div class="sim-toolbar">
+          <button class="btn-action btn-traffic" id="btn-traffic-spike">🚀 Simulate Traffic Spike (10,000 RPS)</button>
+          <button class="btn-action btn-oom" id="btn-memory-leak">💥 Simulate Memory Leak (Approaching OOM)</button>
+          <button class="btn-action btn-alert" id="btn-trigger-alert">🚨 Trigger Alertmanager Firing (Slack/PagerDuty)</button>
+          <button class="btn-action btn-reset" id="btn-reset-telemetry">🛡️ Reset Telemetry</button>
+        </div>
+
+        <!-- Four Golden Signals Gauges -->
+        <div class="metrics-gauges-grid">
+          <div class="metric-panel" id="panel-rps">
+            <div class="metric-title">Traffic (RPS)</div>
+            <div class="metric-val" id="val-rps">420</div>
+            <div class="metric-sub">Requests / sec</div>
+          </div>
+          <div class="metric-panel" id="panel-errors">
+            <div class="metric-title">Errors (HTTP 5xx)</div>
+            <div class="metric-val" id="val-errors" style="color: var(--success);">0.02%</div>
+            <div class="metric-sub">Healthy (&lt; 1%)</div>
+          </div>
+          <div class="metric-panel" id="panel-p99">
+            <div class="metric-title">Latency (P99)</div>
+            <div class="metric-val" id="val-p99">85ms</div>
+            <div class="metric-sub">99th Percentile</div>
+          </div>
+          <div class="metric-panel" id="panel-mem">
+            <div class="metric-title">Saturation (Memory)</div>
+            <div class="metric-val" id="val-mem">210MB</div>
+            <div class="metric-sub">of 512MB Limit</div>
+          </div>
+        </div>
+
+        <!-- Distributed Tracing Waterfall -->
+        <div class="waterfall-box">
+          <div class="waterfall-header">
+            <strong>🕸️ OpenTelemetry Distributed Trace Waterfall (TraceID: 4bf92f35...736)</strong>
+            <span id="trace-total-time">Total Duration: 297ms</span>
+          </div>
+          <div id="waterfall-spans-list">
+            <!-- Spans rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- Terminal Output -->
+        <div class="terminal-window">
+          <div class="terminal-topbar">
+            <span class="term-dot red"></span>
+            <span class="term-dot yellow"></span>
+            <span class="term-dot green"></span>
+            <span class="term-title">prometheus-alertmanager-stream</span>
+          </div>
+          <div class="terminal-body" id="telemetry-console-output">
+            <span style="color: var(--sre-amber);">[Prometheus Scraper] Scraping 3 targets every 15s... [ALL HEALTHY 200 OK]</span><br>
+            Click any action button above to inject production chaos and watch the telemetry react!
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: QUIZ ARENA -->
+    <section id="view-quiz" class="tab-view">
+      <div class="quiz-box">
+        <div class="quiz-header">
+          <div class="quiz-progress" id="quiz-progress-text">Incident 1 of 5</div>
+          <div class="quiz-score-badge" id="quiz-score-display">SRE Score: 0 pts</div>
+        </div>
+
+        <h3 class="quiz-question-title" id="quiz-title">Loading Incident...</h3>
+        <div class="quiz-scenario" id="quiz-scenario"></div>
+
+        <div class="quiz-options" id="quiz-options-container">
+          <!-- Options rendered dynamically -->
+        </div>
+
+        <div class="quiz-feedback-box" id="quiz-feedback-box">
+          <img src="" alt="Meme reaction" class="quiz-meme-img" id="quiz-meme-img">
+          <h4 id="quiz-feedback-title" style="margin-bottom: 0.5rem;"></h4>
+          <p id="quiz-feedback-desc" style="font-size: 0.95rem; color: #cbd5e1;"></p>
+          <button class="btn-action btn-traffic" id="btn-next-quiz" style="margin-top: 1rem;">Next Incident ➔</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: PROMQL BUILDER -->
+    <section id="view-promql" class="tab-view">
+      <div class="story-layout">
+        <div class="telemetry-card">
+          <h3>⚡ Visual PromQL Query Generator</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.2rem;">
+            Assemble production PromQL expressions for Prometheus and Grafana:
+          </p>
+
+          <div style="margin-bottom: 1.2rem;">
+            <label style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Metric Query Type:</label>
+            <select id="sel-promql-type" style="background: #0d0a17; border: 1px solid var(--border-color); color: #fff; padding: 8px 12px; border-radius: 6px; font-family: var(--font-mono); width: 100%;">
+              <option value="rps">Requests Per Second (RPS Rate)</option>
+              <option value="errors">HTTP 5xx Error Rate Percentage</option>
+              <option value="p99">99th Percentile Latency (Histogram Quantile)</option>
+              <option value="memory">Container Memory Usage (MB)</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom: 1.2rem;">
+            <label style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Service Label Filter:</label>
+            <input type="text" id="input-promql-service" value="payment-api" style="background: #0d0a17; border: 1px solid var(--border-color); color: #fff; padding: 8px 12px; border-radius: 6px; font-family: var(--font-mono); width: 100%;">
+          </div>
+
+          <div style="margin-bottom: 1.2rem;">
+            <label style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Time Window Interval:</label>
+            <select id="sel-promql-window" style="background: #0d0a17; border: 1px solid var(--border-color); color: #fff; padding: 8px 12px; border-radius: 6px; font-family: var(--font-mono); width: 100%;">
+              <option value="1m">1 minute [1m]</option>
+              <option value="5m" selected>5 minutes [5m]</option>
+              <option value="15m">15 minutes [15m]</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="telemetry-card">
+          <h3>💻 Output PromQL Expression</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.2rem;">
+            Paste directly into Grafana or Prometheus graph panel:
+          </p>
+
+          <div class="terminal-window">
+            <div class="terminal-topbar">
+              <span class="term-dot red"></span>
+              <span class="term-dot yellow"></span>
+              <span class="term-dot green"></span>
+              <span class="term-title">promql-expression</span>
+            </div>
+            <div class="terminal-body" style="font-size: 0.95rem; overflow-x: auto; color: var(--sre-amber);">
+              <code id="promql-output-code">sum(rate(http_requests_total[5m]))</code>
+            </div>
+          </div>
+
+          <button class="btn-action btn-traffic" id="btn-copy-promql" style="margin-top: 1rem;">
+            📋 Copy PromQL Query
+          </button>
+          <span id="promql-copy-confirm" style="color: var(--success); font-size: 0.85rem; margin-left: 10px; opacity: 0; transition: opacity 0.3s;">Copied!</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="sre-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

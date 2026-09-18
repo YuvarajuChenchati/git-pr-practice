@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  labels:
+    app: backend-service
+spec:
+  type: ClusterIP # Internal only
+  selector:
+    app: ecommerce-web
+  ports:
+    - name: http
+      port: 80         # Port exposed by the Service virtual IP
+      targetPort: 80   # Port the container is listening on inside the Pod

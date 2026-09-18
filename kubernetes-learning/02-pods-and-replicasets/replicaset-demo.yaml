@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: diag-replicaset
+  labels:
+    app: diag-api
+spec:
+  # Desired State: Always maintain exactly 3 healthy replicas!
+  replicas: 3
+  selector:
+    matchLabels:
+      app: diag-api
+  template:
+    metadata:
+      labels:
+        app: diag-api
+    spec:
+      containers:
+        - name: web
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "25m"
+            limits:
+              memory: "64Mi"
+              cpu: "100m"

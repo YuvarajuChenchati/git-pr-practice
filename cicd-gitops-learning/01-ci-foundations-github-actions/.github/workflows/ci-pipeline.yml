@@ -1,0 +1,35 @@
+name: Continuous Integration (CI) Pipeline
+
+# 1. Triggers: Run on push to main or on any Pull Request
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # Job 1: Test & Lint with Matrix Execution
+  test-and-lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 20.x, 22.x ]
+
+    steps:
+      - name: 1. Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: 2. Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm' # Automated package-lock caching!
+
+      - name: 3. Install Dependencies Cleanly
+        run: npm ci
+
+      - name: 4. Run Linter (Code Style Gate)
+        run: npm run lint --if-present
+
+      - name: 5. Execute Automated Test Suite
+        run: npm test --if-present

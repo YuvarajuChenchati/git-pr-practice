@@ -1,0 +1,19 @@
+# ==============================================================================
+# Development Override: Enables Live Hot-Reloading using Host Bind Mounts
+# Run with: docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+# ==============================================================================
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    # Mount current local directory into container /app so edits reflect live!
+    volumes:
+      - ./backend:/app
+      # Anonymous volume prevents host node_modules from overwriting container node_modules
+      - /app/node_modules
+    command: ["npx", "nodemon", "server.js"]
+
+  frontend:
+    volumes:
+      - ./frontend/index.html:/usr/share/nginx/html/index.html:ro

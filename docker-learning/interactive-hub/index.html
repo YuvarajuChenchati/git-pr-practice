@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docker Interactive Mastery Hub | Stories, Memes & Hands-On Simulators</title>
+  <meta name="description" content="Master Docker through interactive simulators, storytelling case studies, memes, and hands-on container playgrounds.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐳</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <span class="brand-icon">🐳</span>
+      <div>
+        <div class="brand-title">Docker Mastery Lab</div>
+      </div>
+      <span class="brand-badge">Interactive Pro</span>
+    </div>
+
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="stories" id="tab-btn-stories">📖 Story Mode</button>
+      <button class="nav-tab" data-tab="simulator" id="tab-btn-simulator">🧪 Layer Simulator</button>
+      <button class="nav-tab" data-tab="network" id="tab-btn-network">🌐 Network Sandbox</button>
+      <button class="nav-tab" data-tab="quiz" id="tab-btn-quiz">🎮 Quiz Arena</button>
+      <button class="nav-tab" data-tab="builder" id="tab-btn-builder">⚡ Command Builder</button>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <h1>Master Docker with Storytelling, Memes & Real Simulators</h1>
+        <p>
+          No boring theory or dry documentation. Experience the history, dissect the Linux kernel magic, simulate layer caching bottlenecks, and master container architectures with real-world case studies.
+        </p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-box">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Episodes</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">6</div>
+          <div class="stat-label">Disaster Labs</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value">96%</div>
+          <div class="stat-label">Size Reduction</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 1: STORY MODE -->
+    <section id="view-stories" class="tab-view active">
+      <div class="story-layout">
+        <aside class="story-sidebar">
+          <div class="story-nav-title">The Container Chronicles</div>
+          <div class="story-list" id="story-nav-list">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </aside>
+
+        <article class="story-card" id="story-display-card">
+          <div class="story-header">
+            <h2 class="story-title" id="story-title">Loading Episode...</h2>
+            <div class="story-tagline" id="story-tagline"></div>
+          </div>
+
+          <div class="story-meme-box" id="story-meme-box">
+            <img src="" alt="Docker Meme" class="story-meme-img" id="story-meme-img">
+            <div class="story-meme-caption" id="story-meme-caption"></div>
+          </div>
+
+          <div class="story-body" id="story-body"></div>
+
+          <div class="story-takeaways" id="story-takeaways">
+            <h4>💡 Key Takeaways:</h4>
+            <ul id="story-takeaways-list"></ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TAB 2: DOCKERFILE LAYER SIMULATOR -->
+    <section id="view-simulator" class="tab-view">
+      <div class="sim-grid">
+        <div class="sim-panel">
+          <h3>🧪 Dockerfile Layer & Cache Lab</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.2rem;">
+            See why line ordering determines whether your build takes <strong>1 second</strong> or <strong>4 minutes</strong>.
+          </p>
+
+          <div class="sim-controls">
+            <button class="sim-preset-btn active" data-preset="bad-node" id="btn-preset-bad">❌ Unoptimized (1.8GB)</button>
+            <button class="sim-preset-btn" data-preset="cached-node" id="btn-preset-cached">⚡ Layer Cached (232MB)</button>
+            <button class="sim-preset-btn" data-preset="multistage-pro" id="btn-preset-multi">🏆 Multi-Stage (54MB)</button>
+          </div>
+
+          <div style="display: flex; gap: 10px; margin-bottom: 1.5rem;">
+            <button class="term-copy-btn" id="btn-trigger-build">🔨 Re-Build Image</button>
+            <button class="sim-preset-btn" id="btn-toggle-code-change">✏️ Simulate Code Edit (styles.css)</button>
+          </div>
+
+          <div class="metric-card" style="margin-bottom: 1rem; text-align: left;">
+            <div style="font-size: 0.85rem; color: var(--text-subtle);">Current Simulation Preset:</div>
+            <div id="sim-preset-title" style="font-weight: 700; color: var(--docker-accent); margin-top: 4px;"></div>
+            <div id="sim-preset-feedback" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;"></div>
+          </div>
+
+          <div class="layer-stack" id="sim-layer-stack">
+            <!-- Layers generated by JS -->
+          </div>
+        </div>
+
+        <div class="sim-panel">
+          <h3>📊 Image Build Diagnostics & Metrics</h3>
+          
+          <div class="sim-metrics">
+            <div class="metric-card size">
+              <div class="val" id="metric-size">--</div>
+              <div class="stat-label">Final Image Size</div>
+            </div>
+            <div class="metric-card time">
+              <div class="val" id="metric-time">--</div>
+              <div class="stat-label">Rebuild Time</div>
+            </div>
+            <div class="metric-card grade">
+              <div class="val" id="metric-grade">--</div>
+              <div class="stat-label">Efficiency Grade</div>
+            </div>
+          </div>
+
+          <div class="terminal-window" style="margin-top: 2rem;">
+            <div class="terminal-topbar">
+              <span class="term-dot red"></span>
+              <span class="term-dot yellow"></span>
+              <span class="term-dot green"></span>
+              <span class="term-title">buildkit-terminal</span>
+            </div>
+            <div class="terminal-body" id="sim-terminal-output">
+              <span class="term-prompt">$</span> docker build -t my-app:latest .<br>
+              <span style="color: var(--text-subtle);">[+] Building 0.0s (0/0)</span>
+            </div>
+          </div>
+
+          <div style="margin-top: 1.5rem; background: rgba(13, 183, 237, 0.08); border: 1px solid var(--border-glow); padding: 1.2rem; border-radius: var(--radius-sm);">
+            <h4 style="color: var(--docker-blue); margin-bottom: 0.5rem;">💡 The Golden Rule of Docker Caching:</h4>
+            <p style="font-size: 0.9rem; color: #cbd5e1;">
+              Docker executes instructions top to bottom. If a line's checksum changes (like <code>COPY . .</code> when code changes), that layer and <strong>EVERY SINGLE LAYER BELOW IT</strong> loses its cache. Always put slow dependencies (<code>RUN npm install</code>, <code>RUN pip install</code>) <strong>above</strong> source code copies!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: NETWORK & VOLUMES SANDBOX -->
+    <section id="view-network" class="tab-view">
+      <div class="sandbox-card">
+        <h3>🌐 Interactive Container Network & Port Mapper</h3>
+        <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1rem;">
+          Containers live in their own private IP subnets. Test how Docker Bridge, internal DNS, and port forwarding connect your host laptop to isolated containers.
+        </p>
+
+        <div style="display: flex; gap: 12px; margin-bottom: 1.5rem; flex-wrap: wrap;">
+          <button class="term-copy-btn" id="btn-ping-dns">📡 Test Internal DNS: Ping 'db' from 'api'</button>
+          <button class="sim-preset-btn" id="btn-toggle-port-forward">🔌 Toggle Port Forwarding (8080:80)</button>
+          <button class="sim-preset-btn" id="btn-simulate-db-restart">🔄 Restart DB Container (Test Volume Persistence)</button>
+        </div>
+
+        <div class="network-topology">
+          <div class="network-label">Docker User-Defined Bridge Network (172.20.0.0/16)</div>
+
+          <div class="nodes-container">
+            <!-- Host OS -->
+            <div class="node-box" style="border-color: #818cf8;">
+              <span class="node-status-dot" style="background: #818cf8; box-shadow: 0 0 8px #818cf8;"></span>
+              <div class="node-title">Your Laptop (Host OS)</div>
+              <div class="node-ip">IP: 192.168.1.55 (Local LAN)</div>
+              <div class="node-port" id="host-browser-port">Browser: http://localhost:8080 ➔ 🟢 Active</div>
+            </div>
+
+            <!-- Nginx Reverse Proxy -->
+            <div class="node-box" id="box-nginx">
+              <span class="node-status-dot"></span>
+              <div class="node-title">nginx-proxy</div>
+              <div class="node-ip">Subnet IP: 172.20.0.2</div>
+              <div class="node-port">Mapped: 8080 ➔ 80 (TCP)</div>
+            </div>
+
+            <!-- Node.js API -->
+            <div class="node-box" id="box-api">
+              <span class="node-status-dot"></span>
+              <div class="node-title">node-api</div>
+              <div class="node-ip">Subnet IP: 172.20.0.3</div>
+              <div class="node-port">Internal: Port 5000</div>
+            </div>
+
+            <!-- PostgreSQL DB -->
+            <div class="node-box" id="box-db">
+              <span class="node-status-dot"></span>
+              <div class="node-title">postgres-db</div>
+              <div class="node-ip">Subnet IP: 172.20.0.4</div>
+              <div class="node-port" id="db-volume-label">Volume: ⚓ pgdata (Safe)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Network Console -->
+        <div class="terminal-window">
+          <div class="terminal-topbar">
+            <span class="term-dot red"></span>
+            <span class="term-dot yellow"></span>
+            <span class="term-dot green"></span>
+            <span class="term-title">network-traffic-analyzer</span>
+          </div>
+          <div class="terminal-body" id="network-console-logs">
+            [Ready] Docker daemon embedded DNS server active at 127.0.0.11.<br>
+            [Status] All 3 containers attached to network 'ecommerce_mesh'.<br>
+            Click any action button above to watch network packets and DNS resolution in action.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: DISASTER QUIZ ARENA -->
+    <section id="view-quiz" class="tab-view">
+      <div class="quiz-box">
+        <div class="quiz-header">
+          <div class="quiz-progress" id="quiz-progress-text">Challenge 1 of 6</div>
+          <div class="quiz-score-badge" id="quiz-score-display">DevOps Score: 0 pts</div>
+        </div>
+
+        <h3 class="quiz-question-title" id="quiz-title">Loading Challenge...</h3>
+        <div class="quiz-scenario" id="quiz-scenario"></div>
+
+        <div class="quiz-options" id="quiz-options-container">
+          <!-- Options rendered dynamically -->
+        </div>
+
+        <div class="quiz-feedback-box" id="quiz-feedback-box">
+          <img src="" alt="Meme reaction" class="quiz-meme-img" id="quiz-meme-img">
+          <h4 id="quiz-feedback-title" style="margin-bottom: 0.5rem;"></h4>
+          <p id="quiz-feedback-desc" style="font-size: 0.95rem; color: #cbd5e1;"></p>
+          <button class="term-copy-btn" id="btn-next-quiz" style="margin-top: 1rem;">Next Challenge ➔</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: COMMAND BUILDER -->
+    <section id="view-builder" class="tab-view">
+      <div class="builder-layout">
+        <div class="sim-panel">
+          <h3>⚡ Visual Docker Run Command Builder</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.2rem;">
+            Never memorize obscure command-line flags again. Toggle what you need and see the command assemble in real time:
+          </p>
+
+          <div style="margin-bottom: 1rem;">
+            <label style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Target Container Image:</label>
+            <input type="text" id="input-builder-image" value="nginx:alpine" style="background: #060910; border: 1px solid var(--border-color); color: #fff; padding: 8px 12px; border-radius: 6px; font-family: var(--font-mono); width: 100%;">
+          </div>
+
+          <div class="flag-group" id="builder-flags-list">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <div class="sim-panel">
+          <h3>💻 Live Command Output</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.2rem;">
+            Copy-paste this directly into your PowerShell or terminal:
+          </p>
+
+          <div class="terminal-window">
+            <div class="terminal-topbar">
+              <span class="term-dot red"></span>
+              <span class="term-dot yellow"></span>
+              <span class="term-dot green"></span>
+              <span class="term-title">powershell / bash</span>
+            </div>
+            <div class="terminal-body">
+              <span class="term-prompt">&gt;</span> <span class="term-command" id="builder-command-result">docker run ...</span>
+            </div>
+          </div>
+
+          <button class="term-copy-btn" id="btn-copy-command" style="margin-top: 1rem;">
+            📋 Copy to Clipboard
+          </button>
+          <span id="copy-confirm-text" style="color: var(--success); font-size: 0.85rem; margin-left: 10px; opacity: 0; transition: opacity 0.3s;">Copied!</span>
+
+          <div style="margin-top: 2rem; background: rgba(168, 85, 247, 0.08); border: 1px solid rgba(168, 85, 247, 0.3); padding: 1.2rem; border-radius: var(--radius-sm);">
+            <h4 style="color: var(--purple); margin-bottom: 0.5rem;">💡 Flag Anatomy Cheat-Sheet:</h4>
+            <ul style="font-size: 0.85rem; color: #cbd5e1; padding-left: 1.2rem; line-height: 1.6;">
+              <li><strong>-d (Detached)</strong>: Starts in background. Omit it if you want to see live logs in stdout.</li>
+              <li><strong>--rm</strong>: Garbage collects container disk space when stopped. Crucial for temp tasks!</li>
+              <li><strong>-p 8080:80</strong>: Left is <em>Host</em> (your laptop), Right is <em>Container</em>.</li>
+              <li><strong>-v my-vol:/app</strong>: Persists files beyond container destruction.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="stories-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

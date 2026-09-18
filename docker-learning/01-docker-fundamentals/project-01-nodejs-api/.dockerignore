@@ -1,0 +1,10 @@
+# Ignore local node_modules - NEVER copy host node_modules into Linux containers!
+# Host node_modules may contain Windows-specific native binaries that crash on Linux.
+node_modules
+npm-debug.log
+.git
+.gitignore
+.env.local
+.DS_Store
+README.md
+walkthrough.md
